@@ -22,7 +22,7 @@ public class beads {
 	}
 
 	public void initiate() throws IOException {
-		BufferedReader f = new BufferedReader(new FileReader("beads.in"));
+		BufferedReader f = new BufferedReader(new FileReader("files/in/beads.in"));
 		int number = Integer.parseInt(f.readLine());
 		beads = f.readLine();
 		calculate();
@@ -95,7 +95,7 @@ public class beads {
 
 	public void findMxm() throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
-				"beads.out")));
+				"files/out/beads.out")));
 		int max = 0;
 		String s = "";
 		for (int i = 0; i < numbers.length; i++) {

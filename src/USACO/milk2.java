@@ -25,7 +25,7 @@ public class milk2 {
 			IOException {
 		times = new ArrayList<time>();
 		int start, end, number, noMilk, milk;
-		BufferedReader br = new BufferedReader(new FileReader("milk2.in"));
+		BufferedReader br = new BufferedReader(new FileReader("files/in/milk2.in"));
 		number = Integer.parseInt(br.readLine());
 		for (int i = 0; i < number; i++) {
 			StringTokenizer st = new StringTokenizer(br.readLine());
@@ -37,7 +37,7 @@ public class milk2 {
 		noMilk = longestCowNotMilked();
 		milk = longestCowMilked();
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
-				"milk2.out")));
+				"files/out/milk2.out")));
 		out.println(milk + " " + noMilk);
 		out.close();
 

@@ -21,9 +21,9 @@ public class beautifulStrings {
 //			System.out.println("Case #" + (i + 1) + ": " + mxmBeauty);
 //		}
 		
-		BufferedReader f = new BufferedReader(new FileReader("beauty.in"));
+		BufferedReader f = new BufferedReader(new FileReader("files/in/beauty.in"));
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
-				"beauty.out")));
+				"files/out/beauty.out")));
 		int cases = Integer.parseInt(f.readLine());
 		for(int i=0; i < cases; i++){
 			beauty = f.readLine();

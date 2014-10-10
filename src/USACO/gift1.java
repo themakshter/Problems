@@ -28,7 +28,7 @@ public class gift1 {
 	
 	public void initiate()throws IOException{
 		net = new HashMap<String, Integer>();
-		BufferedReader f = new BufferedReader(new FileReader("gift1.in"));
+		BufferedReader f = new BufferedReader(new FileReader("files/in/gift1.in"));
 		
 		int number = Integer.parseInt(f.readLine());
 		String[] people = new String[number];
@@ -69,7 +69,7 @@ public class gift1 {
 	
 	public void end(String [] people) throws IOException{
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
-				"gift1.out")));
+				"files/out/gift1.out")));
 		
 		for(String s : people){
 			out.println(s + " " + net.get(s));

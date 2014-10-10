@@ -24,7 +24,7 @@ public class friday {
 	}
 
 	public void initiate() throws IOException {
-		BufferedReader f = new BufferedReader(new FileReader("friday.in"));
+		BufferedReader f = new BufferedReader(new FileReader("files/in/friday.in"));
 		int years = Integer.parseInt(f.readLine());
 		// int years = 20;
 		int day = 2;
@@ -85,7 +85,7 @@ public class friday {
 
 	public void print() throws IOException {
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
-				"friday.out")));
+				"files/out/friday.out")));
 		String x = days[0] + " " + days[1] + " " + days[2] + " " + days[3]
 				+ " " + days[4] + " " + days[5] + " " + days[6];
 		out.println(x);
