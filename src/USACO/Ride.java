@@ -1,4 +1,4 @@
-package usaco;
+package USACO;
 /*
 ID: mohamma86
 LANG: JAVA
@@ -7,9 +7,9 @@ PROG: ride.java
 */
 import java.io.*;
 
-class ride {
+class Ride {
   public static void main (String [] args) throws IOException {
-	ride t = new ride();
+	Ride t = new Ride();
 	//   Use BufferedReader rather than RandomAccessFile; it's much faster
     BufferedReader f = new BufferedReader(new FileReader("files/in/ride.in"));
                                                   // input file name goes above

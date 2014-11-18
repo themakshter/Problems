@@ -1,4 +1,4 @@
-package usaco;
+package USACO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -12,12 +12,12 @@ import java.io.PrintWriter;
  TASK: beads
  PROG: beads.java
  */
-public class beads {
+public class Beads {
 	private int[] numbers;
 	private String beads;
 
 	public static void main(String[] args) throws IOException {
-		beads b = new beads();
+		Beads b = new Beads();
 		b.initiate();
 	}
 

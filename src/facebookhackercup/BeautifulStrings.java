@@ -9,7 +9,7 @@ import java.io.PrintWriter;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class beautifulStrings {
+public class BeautifulStrings {
 	public static void main(String [] args) throws NumberFormatException, IOException{
 		String beauty;
 		int mxmBeauty;

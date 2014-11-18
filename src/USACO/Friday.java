@@ -1,4 +1,4 @@
-package usaco;
+package USACO;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -13,12 +13,12 @@ import java.io.PrintWriter;
  PROG: friday.java
  */
 
-public class friday {
+public class Friday {
 	private int[] days = { 0, 0, 0, 0, 0, 0, 0 };
 	private boolean isLeap;
 
 	public static void main(String[] args) throws IOException {
-		friday f = new friday();
+		Friday f = new Friday();
 		f.initiate();
 		f.print();
 	}

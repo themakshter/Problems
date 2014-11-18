@@ -1,4 +1,4 @@
-package usaco;
+package USACO;
 /*
 ID: mohamma86
 LANG: JAVA
@@ -17,10 +17,10 @@ import java.util.StringTokenizer;
 
 
 
-public class gift1 {
+public class Gift1 {
 	private HashMap<String, Integer> net;
 	public static void main(String[] args) throws IOException  {
-		gift1 g = new gift1();
+		Gift1 g = new Gift1();
 		g.initiate();
 		//g.end();
 		System.exit(0);

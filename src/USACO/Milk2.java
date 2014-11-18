@@ -1,4 +1,4 @@
-package usaco;
+package USACO;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  PROG: milk2.java
  */
 
-public class milk2 {
+public class Milk2 {
 
 	private static ArrayList<time> times;
 
