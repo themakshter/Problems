@@ -1,4 +1,4 @@
-package POJ;
+package poj;
 
 import java.io.BufferedReader;
 import java.io.IOException;

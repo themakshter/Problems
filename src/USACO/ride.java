@@ -1,4 +1,4 @@
-package USACO;
+package usaco;
 /*
 ID: mohamma86
 LANG: JAVA
