@@ -1,3 +1,3 @@
- PracticeProblems - Programming questions
- =========================================
- Practice coding questions. Taken from a number of different sites.
+ Problems - Programming questions
+==========================================
+ Coding questions taken from a number of different sites and other sources
