@@ -23,34 +23,51 @@ public class OrganisationalChart {
 	private static Employee ceo;
 
 	/**
-	 * Main method which takes in the parameters and finds the shortest path
+	 * Main method which takes in the parameters and calls the solve method
 	 * 
 	 * @param args
 	 *            parameters which will be taken in (filename, employee 1 and
 	 *            employee 2)
 	 */
 	public static void main(String[] args) {
+		solve(args);
+	}
+
+	/**
+	 *Method which takes in the parameters and finds the shortest path
+	 * 
+	 * @param args
+	 *            parameters which will be taken in (filename, employee 1 and
+	 *            employee 2)
+	 */
+	public static void solve(String[] args) {
 		// usage is incorrect
-		if (args.length > 0) {
+		if (args.length == 3) {
 			String fileName = args[0];
 			String name1 = args[1];
 			String name2 = args[2];
 			try {
 				// create our chart
 				buildChart(fileName);
-			} catch (FileNotFoundException e) {
+
+				// set the employees
+				Employee employee1 = employeeMap.get(namesMap
+						.get(constructNormalisedName(name1)));
+				Employee employee2 = employeeMap.get(namesMap
+						.get(constructNormalisedName(name2)));
+
+				// find the shortest path
+				findWay(employee1, employee2);
+			} catch (FileNotFoundException fnfe) {
 				System.err
 						.println("Error! There was something wrong with the file specified");
-			} catch (IOException e) {
+			} catch (IOException ioe) {
 				System.err
 						.println("Error! Something went wrong while reading the file");
-				e.printStackTrace();
+			} catch (NullPointerException npe) {
+				System.err
+						.println("Error! At least one of the employees specified does not exist");
 			}
-			Employee employee1 = employeeMap.get(namesMap
-					.get(constructNormalisedName(name1.split("\"")[0])));
-			Employee employee2 = employeeMap.get(namesMap
-					.get(constructNormalisedName(name2.split("\"")[0])));
-			findWay(employee1, employee2);
 		} else {
 			System.err
 					.println("Error! Usage is OrganisationalChart (filename) (employee1) (employee2)");
@@ -86,7 +103,7 @@ public class OrganisationalChart {
 	 * @param line
 	 *            an employee record
 	 */
-	public static void parseEmployee(String line) {
+	private static void parseEmployee(String line) {
 		String[] bits = line.split(Pattern.quote("|"));
 		int start = 0;
 		if (bits[start].length() == 0) {
@@ -144,7 +161,7 @@ public class OrganisationalChart {
 	 *            the employee to whom we want to find the path
 	 * @return the lowest common ancestor between the two employees
 	 */
-	public static int findLowestCommonAncestor(Employee to, Employee from) {
+	private static int findLowestCommonAncestor(Employee to, Employee from) {
 		ArrayList<Integer> paths = getPathToRoot(to);
 		while (!from.equals(ceo)) {
 			int id = from.getId();
@@ -164,7 +181,7 @@ public class OrganisationalChart {
 	 *            the employee from which to find the path
 	 * @return the list of the employee ids present in this path
 	 */
-	public static ArrayList<Integer> getPathToRoot(Employee employee) {
+	private static ArrayList<Integer> getPathToRoot(Employee employee) {
 		ArrayList<Integer> paths = new ArrayList<Integer>();
 		paths.add(employee.getId());
 		while (!employee.equals(ceo)) {
@@ -185,7 +202,7 @@ public class OrganisationalChart {
 	 * @param ancestor
 	 *            the lowest common ancestor between the two employees
 	 */
-	public static void printPaths(Employee to, Employee from, Employee ancestor) {
+	private static void printPaths(Employee to, Employee from, Employee ancestor) {
 		if (to.equals(from)) {
 			System.out.println(to.getName() + " (" + to.getId() + ")");
 		} else if (from.equals(ancestor)) {
@@ -208,7 +225,7 @@ public class OrganisationalChart {
 	 *            the employee to whom we want to write the path
 	 * @return the string containing the path
 	 */
-	public static String getPathTo(Employee to, Employee from) {
+	private static String getPathTo(Employee to, Employee from) {
 		String result = "";
 		String space = " -> ";
 		while (!to.equals(from)) {
@@ -228,7 +245,7 @@ public class OrganisationalChart {
 	 *            the employee to whom we want to write the path
 	 * @return the string containing the path
 	 */
-	public static String getPathFrom(Employee to, Employee from) {
+	private static String getPathFrom(Employee to, Employee from) {
 		String result = "";
 		String space = " <- ";
 		while (!to.equals(from)) {
@@ -245,7 +262,7 @@ public class OrganisationalChart {
 	 *            the given name which may have unecessary whitespaces
 	 * @return the normalised name
 	 */
-	public static String constructNormalisedName(String originalName) {
+	private static String constructNormalisedName(String originalName) {
 		StringBuilder sb = new StringBuilder();
 		String[] bits = originalName.toLowerCase().trim().split(" ");
 		for (String bit : bits) {
