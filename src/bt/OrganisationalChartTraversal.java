@@ -4,11 +4,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.regex.Pattern;
 
-public class Main {
+public class OrganisationalChartTraversal {
 	private static HashMap<String,Integer> nameToEmployeeId;
 	private static HashMap<Integer, String> employeeIdToName;
 	private static HashMap<Integer, Integer> employeeIdToManagerId;
@@ -16,7 +16,7 @@ public class Main {
 	public static void main(String[] args) {
 		String fileName = "files/in/superheroes.txt";
 		String employee1 = "Batman";
-		String employee2 = "Super Ted";
+		String employee2 = "Black Widow";
 		if(args.length > 0){
 			fileName = args[0];
 			employee1 = args[1];
@@ -30,7 +30,7 @@ public class Main {
 			System.err.println("Error! Something went wrong while reading the file");
 			e.printStackTrace();
 		}
-		findWay(employee1,employee2);
+		findWay(employee1.toLowerCase(),employee2.toLowerCase());
 	}
 	
 	public static void buildMaps(String fileName) throws IOException{
@@ -40,11 +40,11 @@ public class Main {
 		BufferedReader buff  = new BufferedReader(new FileReader(fileName));
 		String line = buff.readLine();
 		line = buff.readLine(); //the headings
-		String[] bits;
 		while(line != null){
 			parseEmployee(line.toLowerCase().trim());
 			line = buff.readLine();
 		}
+		buff.close();
 	}
 	
 	public static void parseEmployee(String line){
@@ -55,29 +55,78 @@ public class Main {
 		}
 		int employeeId = Integer.parseInt(bits[start].trim());
 		String name = bits[start+1];
-		nameToEmployeeId.put(name, employeeId);
-		employeeIdToName.put(employeeId, name);
-		String out = employeeId + "\t" + name;
+		nameToEmployeeId.put(name.trim(), employeeId);
+		employeeIdToName.put(employeeId, name.trim());
 		String manager = bits[start+2].trim();
 		if(manager.length() > 0){
 			int managerId = Integer.parseInt(manager);
 			employeeIdToManagerId.put(employeeId, managerId);
-			out+="\t"+managerId;
 		}
-		System.out.println(out);
 	}
 	
 	public static void findWay(String to,String from){
 		int employee1Id = nameToEmployeeId.get(to);
 		int employee2Id = nameToEmployeeId.get(from);
 		int ancestor = findLowestCommonAncestor(employee1Id,employee2Id);
+		printPaths(employee1Id, employee2Id, ancestor);
 	}
 	
 	public static int findLowestCommonAncestor(int to, int from){
-		int lastAddedValue;
-		HashSet<Integer> ancestorSet = new HashSet<Integer>();
-		
-		return 0;
+		ArrayList<Integer> paths = getPathToRoot(to);
+		int node = from;
+		while(employeeIdToManagerId.get(node)!=null){
+			if(paths.contains(node)){
+				return node;
+			}else{
+				node = employeeIdToManagerId.get(node);
+			}
+		}
+		return node;
 	}
+	
+	public static ArrayList<Integer> getPathToRoot(int node){
+		ArrayList<Integer> paths = new ArrayList<Integer>();
+		paths.add(node);
+		while(employeeIdToManagerId.get(node) != null){
+			int manager = employeeIdToManagerId.get(node);
+			paths.add(manager);
+			node = manager;
+		}		
+		return paths;
+	}
+	
+	public static void printPaths(int to, int from, int ancestor){
+		if(to == from){
+			System.out.println(employeeIdToName.get(to) + " (" + to + ")");
+		}else if(from == ancestor){
+			System.out.println(printTo(to, ancestor) + employeeIdToName.get(ancestor) + " (" + ancestor + ")");
+		}else{
+		System.out.println(printTo(to, ancestor) + employeeIdToName.get(ancestor) + " (" + ancestor + ")" + printFrom(from, ancestor));
+		}
+	}
+		
+	
+	public static String printTo(int to, int from){
+		int node = to;
+		String space = " -> ";
+		String result = employeeIdToName.get(node) + " ("+node+")" + space;
+		while(employeeIdToManagerId.get(node) != from){
+			node = employeeIdToManagerId.get(node);
+			result+= employeeIdToName.get(node) + "(" + node + ")" + space;
+		}
+		return result;
+	}
+	
+	public static String printFrom(int to, int from){
+		int node = to;
+		String space = " <- ";
+		String result =  space + employeeIdToName.get(node) + " (" + node + ")";
+		while(employeeIdToManagerId.get(node)!= from){
+			node = employeeIdToManagerId.get(node);
+			result = space + employeeIdToName.get(node) + " (" + node + ")" + result;
+		}
+		return result;
+	}
+	
 	
 }

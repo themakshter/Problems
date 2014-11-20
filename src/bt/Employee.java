@@ -1,12 +1,20 @@
 package bt;
 
+import java.util.ArrayList;
+
 public class Employee {
-	private int employeeId;
+	private int id;
 	private String name;
-	
+	private Employee manager;
+	private ArrayList<Employee> managerOf;
 	public Employee(int employeeId, String name){
-		this.employeeId = employeeId;
-		this.name = name;
+		this(employeeId);
+		this.name = name.trim();
+	}
+	
+	public Employee(int id){
+		this.id = id;
+		managerOf = new ArrayList<Employee>();
 	}
 	
 	
@@ -18,11 +26,32 @@ public class Employee {
 		this.name = name;
 	}
 	
-	public int getEmployeeId(){
-		return employeeId;
+	public int getId(){
+		return id;
 	}
 	
-	public void setEmployeeId(int employeeId){
-		this.employeeId = employeeId;
+	public void setId(int employeeId){
+		this.id = employeeId;
 	}		
+	
+	public Employee getManager(){
+		return manager;
+	}
+	
+	public void setManager(Employee manager){
+		this.manager = manager;
+	}
+	
+	public void addEmployee(Employee employee){
+		this.managerOf.add(employee);
+	}
+	
+	public ArrayList<Employee> getEmployees(){
+		return managerOf;
+	}
+	
+	public boolean equals(Employee employee){
+		return this.id == employee.getId();
+	}
+	
 }
