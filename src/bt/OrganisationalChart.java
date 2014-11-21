@@ -60,7 +60,7 @@ public class OrganisationalChart {
 				findWay(employee1, employee2);
 			} catch (FileNotFoundException fnfe) {
 				System.err
-						.println("Error! There was something wrong with the file specified");
+						.println("Error! File specified was not found!");
 			} catch (IOException ioe) {
 				System.err
 						.println("Error! Something went wrong while reading the file");
