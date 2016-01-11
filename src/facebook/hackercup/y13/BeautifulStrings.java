@@ -1,4 +1,4 @@
-package facebookhackercup;
+package facebook.hackercup.y13;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
