@@ -20,6 +20,7 @@ public class BoomerangConstellations {
 			int constellations = findBoomerangConstellations(points);
 			System.out.println("Case #"+(i+1)+": " + constellations);
 		}
+		System.out.println();
 	}
 
 	public static int findBoomerangConstellations(Point[] points) {
