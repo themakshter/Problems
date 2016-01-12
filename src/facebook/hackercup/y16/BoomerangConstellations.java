@@ -40,13 +40,12 @@ public class BoomerangConstellations {
 				}
 			}
 			for(double key: map.keySet()){
-				if(map.get(key) < 2)
+				if(map.get(key) == 1){
 					continue;
-				else if(map.get(key) == 2)
-					constellations +=1;
-				else
-					constellations += map.get(key);
-					
+				}else{
+					int number = map.get(key);
+					constellations += ((number)*(number-1))/2; 
+				}
 			}
 		}
 		return constellations;	
