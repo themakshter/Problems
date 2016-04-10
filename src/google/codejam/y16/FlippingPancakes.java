@@ -16,7 +16,7 @@ public class FlippingPancakes {
 		int cases = Integer.parseInt(reader.readLine());
 		for (int i = 0; i < cases; i++) {
 			PancakeStack pancakeStack = new PancakeStack(reader.readLine());
-			out.println(pancakeStack.getMovesForCompletelyHappyStack());
+			out.println("Case #" + (i+1) + ": " + pancakeStack.getMovesForCompletelyHappyStack());
 		}
 		out.close();
 	}
@@ -28,7 +28,7 @@ class PancakeStack{
 		pancakes = new ArrayList<Pancake>();
 		String[] pancakes = pancakeString.split("");
 		for(String pancake:pancakes){
-			this.pancakes.add(new Pancake(pancake == "+"));
+			this.pancakes.add(new Pancake(pancake.equals("+")));
 		}
 	}
 	
@@ -58,8 +58,8 @@ class PancakeStack{
 		int i = 0; 
 		int j = stackIndex;
 		while(i <= j){
-			Pancake iPancake = pancakes.get(i);
-			Pancake jPancake = pancakes.get(j);
+			Pancake iPancake = new Pancake(pancakes.get(i));
+			Pancake jPancake = new Pancake(pancakes.get(j));
 			iPancake.isHappy = !iPancake.isHappy;
 			jPancake.isHappy = !jPancake.isHappy;
 			pancakes.set(i, jPancake);
@@ -84,6 +84,10 @@ class Pancake{
 	public boolean isHappy;
 	public Pancake(boolean isHappy){
 		this.isHappy = isHappy;
+	}
+	
+	public Pancake(Pancake pancake){
+		this(pancake.isHappy);
 	}
 	
 	
