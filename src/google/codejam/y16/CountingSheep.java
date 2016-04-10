@@ -11,12 +11,12 @@ import java.util.HashSet;
 public class CountingSheep {
 
 	public static void main(String[] args) throws NumberFormatException, IOException{
-		BufferedReader f = new BufferedReader(new FileReader("files/in/countingSheep.in"));
+		BufferedReader reader = new BufferedReader(new FileReader("files/in/countingSheep.in"));
 		PrintWriter out = new PrintWriter(new BufferedWriter(new FileWriter(
 				"files/out/countingSheep.out")));
-		int cases = Integer.parseInt(f.readLine());
+		int cases = Integer.parseInt(reader.readLine());
 		for (int i = 0; i < cases; i++) {
-			int n = Integer.parseInt(f.readLine());
+			int n = Integer.parseInt(reader.readLine());
 			out.println("Case #"+ (i+1) + ": " + findSleepNumber(n));
 		}
 		out.close();
